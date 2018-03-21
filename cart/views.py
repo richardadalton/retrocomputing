@@ -1,9 +1,14 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from products.models import Product
 
 # Create your views here.
 def add_to_cart(request):
     id = request.POST['id']
-    quantity = request.POST['quantity']
-    product = get_object_or_404(Product, pk=id)
-    return HttpResponse("You want to add {0} of {1}".format(quantity, product.name))
+    quantity = int(request.POST['quantity'])
+
+    cart = request.session.get('cart', {})
+    cart[id] = cart.get(id, 0) + quantity
+    
+    request.session['cart'] = cart   
+
+    return redirect('home')
