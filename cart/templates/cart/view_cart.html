@@ -19,8 +19,8 @@
             <td><img width="150" height="75" src="{{MEDIA_URL}}{{item.image}}"/></td>    
             <td>{{ item.name }}</td>    
             <td>{{ item.quantity}}</td>    
-            <td>€{{ item.price }}.00</td>
-            <td>€{{ item.total}}.00</td>    
+            <td>€{{ item.price }}</td>
+            <td>€{{ item.total}}</td>    
         </tr>
         {% endfor %}
 
@@ -30,7 +30,7 @@
             <td></td>
             <td></td>
             <td><strong>Total:</strong></td>
-            <td><strong>€{{total}}.00</strong></td>
+            <td><strong>€{{total}}</strong></td>
         </tr>
         <tr>
             <td></td>
