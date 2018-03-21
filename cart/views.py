@@ -3,7 +3,26 @@ from products.models import Product
 
 
 def view_cart(request):
-    return render(request, "cart/view_cart.html")
+    
+    cart_items = [
+        {
+            'image': '/media/images/spectrum128K.png',
+            'name': 'Spectrum 128K',
+            'quantity': '1',
+            'price': '100',
+            'total': '100',
+        },
+        {
+            'image': '/media/images/sinclair_ql.png',
+            'name': 'Sinclair QL',
+            'quantity': '1',
+            'price': '50',
+            'total': '50',
+        },
+    ]
+    args = {'cart_items': cart_items, 'total': 999 }
+    
+    return render(request, "cart/view_cart.html", args)
     
 
 def add_to_cart(request):
