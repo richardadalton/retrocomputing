@@ -16,6 +16,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from home.views import home
 from accounts import urls as urls_accounts
+from products import urls as urls_products
 from django.views import static
 from django.views.static import serve
 from django.conf import settings
@@ -24,6 +25,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home, name='home'),
     url(r'^accounts/', include(urls_accounts)),
+    url(r'^products/', include(urls_products)),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})
 ]
 
