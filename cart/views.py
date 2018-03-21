@@ -13,6 +13,7 @@ def view_cart(request):
         this_total = this_product.price * Decimal(item_quantity)
         total += this_total
         this_item = {
+            'product_id': item_id, 
             'image': this_product.image,
             'name': this_product.name,
             'quantity': item_quantity,
@@ -36,3 +37,12 @@ def add_to_cart(request):
     request.session['cart'] = cart   
 
     return redirect('home')
+
+
+
+def remove_from_cart(request, id):
+    cart = request.session.get('cart', {})
+    del cart[id]
+    request.session['cart'] = cart   
+    return redirect('view_cart')    
+    
