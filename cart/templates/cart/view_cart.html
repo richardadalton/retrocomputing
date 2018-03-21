@@ -1,0 +1,52 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+<h1>Cart</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>    
+            <th>Product</th>    
+            <th>Quantity</th>    
+            <th>Price</th>
+            <th>Total</th>    
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><img width="150" height="75" src="/media/images/spectrum128K.png"/></td>    
+            <td>Spectrum 128K</td>    
+            <td>1</td>    
+            <td>€100.00</td>
+            <td>€100.00</td>    
+        </tr>        
+        <tr>
+            <td><img width="150" height="75" src="/media/images/spectrum48K.png"/></td>    
+            <td>Spectrum 48K</td>    
+            <td>2</td>    
+            <td>€120.00</td>
+            <td>€240.00</td>    
+        </tr>  
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><strong>Total:</strong></td>
+            <td><strong>€340.00</strong></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><button type="button" class="btn btn-success">Checkout</button></td>
+        </tr>
+
+    </tbody>
+    
+</table>
+
+
+
+{% endblock content %}
