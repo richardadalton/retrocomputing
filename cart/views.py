@@ -4,22 +4,20 @@ from products.models import Product
 
 def view_cart(request):
     
-    cart_items = [
-        {
-            'image': '/media/images/spectrum128K.png',
-            'name': 'Spectrum 128K',
-            'quantity': '1',
-            'price': '100',
-            'total': '100',
-        },
-        {
-            'image': '/media/images/sinclair_ql.png',
-            'name': 'Sinclair QL',
-            'quantity': '1',
-            'price': '50',
-            'total': '50',
-        },
-    ]
+    cart = request.session.get('cart', {})
+
+    cart_items = []
+    for item_id, item_quantity in cart.items():
+        this_product = get_object_or_404(Product, pk=item_id)
+        this_item = {
+            'image': this_product.image,
+            'name': this_product.name,
+            'quantity': item_quantity,
+            'price': this_product.price,
+            'total': 0,
+        }
+        cart_items.append(this_item)
+    
     args = {'cart_items': cart_items, 'total': 999 }
     
     return render(request, "cart/view_cart.html", args)
