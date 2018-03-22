@@ -3,54 +3,10 @@
 {% block content %}
 <h1>Cart</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th></th>    
-            <th>Product</th>    
-            <th>Quantity</th>    
-            <th>Price</th>
-            <th>Total</th> 
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for item in cart_items %}
-        <tr>
-            <td><img width="150" height="75" src="{{MEDIA_URL}}{{item.image}}"/></td>    
-            <td>{{ item.name }}</td>    
-            <td>{{ item.quantity}}</td>    
-            <td>€{{ item.price }}</td>
-            <td>€{{ item.total}}</td>
-            <td><form method="post" action="{% url 'remove_from_cart' item.product_id %}">
-                {% csrf_token %}
-                <input type="submit" class="btn btn-success" value="Remove"/>
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
+{% include 'cart/_show_cart.html' %}
 
+<a href="{% url 'checkout' %}" class="btn btn-success" role="button">Checkout</a>
 
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><strong>Total:</strong></td>
-            <td><strong>€{{total}}</strong></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><button type="button" class="btn btn-success">Checkout</button></td>
-            <td></td>
-        </tr>
-
-    </tbody>
-    
-</table>
 
 
 

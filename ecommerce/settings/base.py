@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'accounts',
     'products',
     'cart',
-    'reviews'
+    'reviews',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +120,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
