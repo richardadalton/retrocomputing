@@ -21,7 +21,6 @@ def add_to_cart(request):
     return redirect('home')
 
 
-
 def remove_from_cart(request, id):
     cart = request.session.get('cart', {})
     del cart[id]
