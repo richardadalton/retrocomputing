@@ -1,5 +1,4 @@
 {% extends "home/base.html" %}
-{% load bootstrap_tags %}
 {% block content %}
       <div class="row">
 
@@ -26,8 +25,12 @@
             </form>
           </div>
           
-        {% include "reviews/show_reviews.html" %}
+          {% include "reviews/_show_reviews.html" %}
 
+        {% if user.is_authenticated %}
+          {% include "reviews/_add_review_form.html" %}
+        {% endif %}
+        
         </div>
         <!-- /.col-lg-9 -->
 
