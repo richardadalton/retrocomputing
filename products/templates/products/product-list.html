@@ -16,11 +16,9 @@
                             <div class="ratings">
                                 <p class="pull-right">{{product.reviews_received.all|length}} reviews</p>
                                 <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
+                                {% for star in product.stars %}
+                                <span class="glyphicon glyphicon-star"></span>
+                                {% endfor %}
                                 </p>
                             </div>
                         </div>

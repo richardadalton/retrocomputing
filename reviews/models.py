@@ -8,6 +8,10 @@ class Review(models.Model):
     content = models.TextField()
     rating = models.IntegerField(blank=False, default=1)
     
+    @property
+    def stars(self):
+        return range(self.rating)
+    
     def __str__(self):
         return self.content
     

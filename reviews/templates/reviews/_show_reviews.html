@@ -6,7 +6,11 @@
 
     {% for review in product.reviews_received.all %}
     <p>{{review.content}}</p>
-    <p><small >Rating {{review.rating}}</small></p>
+    <p><small >Rating 
+      {% for star in review.stars %}
+      &#9733;
+      {% endfor %}
+    </small></p>
     <p><small class="text-muted">Posted by {{review.reviewer.username}}</small></p>
     <hr>
     {%endfor%}
