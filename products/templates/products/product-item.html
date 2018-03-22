@@ -1,5 +1,5 @@
 {% extends "home/base.html" %}
-
+{% load bootstrap_tags %}
 {% block content %}
       <div class="row">
 
@@ -34,10 +34,19 @@
 
               {% for review in product.reviews_received.all %}
               <p>{{review.content}}</p>
-              <small class="text-muted">Posted by {{review.reviewer.username}}</small>
+              <p><small >Rating {{review.rating}}</small></p>
+              <p><small class="text-muted">Posted by {{review.reviewer.username}}</small></p>
               <hr>
               {%endfor%}
-              <a href="#" class="btn btn-success">Leave a Review</a>
+              
+              <form method="post" action="{% url 'add_a_review' %}">
+                {% csrf_token %}
+                
+                {{ review_form | as_bootstrap }}
+                
+                <input type="hidden" name="product" value="{{product.id}}"/>
+                <input type="submit" class="btn btn-success" value="Leave Review"/>
+              </form>
             </div>
           </div>
           <!-- /.card -->
