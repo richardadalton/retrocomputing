@@ -9,5 +9,6 @@ def all_products(request):
     
 def product_item(request, id):
     product = get_object_or_404(Product, pk=id)
+    print(product)
     form = ReviewForm()
     return render(request, "products/product-item.html", {'product': product, 'review_form': form })
