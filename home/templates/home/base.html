@@ -32,6 +32,7 @@
                 </button>
                 <a class="navbar-brand" href="/">ECommerce</a>
             </div>
+            
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
@@ -48,8 +49,20 @@
             </div>
         </div>
     </nav>
+    
     <div class="container">
+        <div class="row">
+            <form action={% url 'search' %}>
+                <input class="form-control" type="text" placeholder="Search" name="query" />
+                <input type="radio" name="match" value="contains" checked> Contains<br>
+                <input type="radio" name="match" value="begins"> Begins With<br>
+                <input class="btn btn-default" type="submit" value="search" />
+            </form>
+        </div>
+        <br>
+        <div class="row">
         {% block content %} {% endblock %}
+        </div>
     </div>
     <footer>
         <div class="container">

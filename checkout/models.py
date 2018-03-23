@@ -20,8 +20,8 @@ class Order(models.Model):
         
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(Order, null=False)
-    product = models.ForeignKey(Product, null=False)
+    order = models.ForeignKey(Order, null=False, related_name="line_items")
+    product = models.ForeignKey(Product, null=False, related_name="orders")
     quantity = models.IntegerField(blank=False)
     
     def __str__(self):

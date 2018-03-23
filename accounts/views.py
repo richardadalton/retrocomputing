@@ -10,7 +10,7 @@ def logout(request):
     """A view that logs the user out and redirects back to the index page"""
     auth.logout(request)
     messages.success(request, 'You have successfully logged out')
-    return redirect('home')
+    return redirect(request.GET.get('next', 'home'))
 
 
 def login(request):
