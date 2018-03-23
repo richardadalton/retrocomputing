@@ -17,8 +17,12 @@
                                 <p class="pull-right">{{product.reviews_received.all|length}} reviews</p>
                                 <p>
                                 {% for star in product.stars %}
-                                <span class="glyphicon glyphicon-star"></span>
+                                <i class="fa fa-star"></i>
                                 {% endfor %}
+                                {% if product.needs_half_star %}
+                                <i class="fa fa-star-half"></i>
+                                {% endif %}                
+
                                 </p>
                             </div>
                         </div>

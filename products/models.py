@@ -16,6 +16,11 @@ class Product(models.Model):
     @property
     def stars(self):
         return range(int(self.average_rating))
+    
+    @property 
+    def needs_half_star(self):
+        remainder = self.average_rating - int(self.average_rating)
+        return 0.3 < remainder < 0.7
 
     def __str__(self):
         return self.name

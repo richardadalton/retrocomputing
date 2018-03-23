@@ -12,8 +12,11 @@
               <p class="card-text">{{product.description}}</p>
               <span class="text-warning">
                 {% for star in product.stars %}
-                &#9733;
+                <i class="fa fa-star"></i>
                 {% endfor %}
+                {% if product.needs_half_star %}
+                <i class="fa fa-star-half"></i>
+                {% endif %}                
               </span>
             </div>
           </div>
