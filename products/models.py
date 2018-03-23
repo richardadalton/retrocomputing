@@ -11,11 +11,11 @@ class Product(models.Model):
     @property
     def average_rating(self):
         average = self.reviews_received.all().aggregate(Avg('rating'))
-        return int(average['rating__avg'])
+        return average['rating__avg']
 
     @property
     def stars(self):
-        return range(self.average_rating)
+        return range(int(self.average_rating))
 
     def __str__(self):
         return self.name
