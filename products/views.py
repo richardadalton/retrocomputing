@@ -16,10 +16,5 @@ def product_item(request, id):
 
 def search_products(request):
     match = request.GET.get('match')
-    
-    if match=='contains':
-        products = Product.objects.filter(name__icontains=request.GET['query'])
-    else:
-        products = Product.objects.filter(name__startswith=request.GET['query'])
-    
+    products = Product.objects.filter(name__icontains=request.GET['query'])
     return render(request, "products/product-list.html", {"products": products})
