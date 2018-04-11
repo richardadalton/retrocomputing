@@ -19,6 +19,17 @@ class TestAccountsViews(TestCase):
         self.assertIn('_auth_user_id', self.client.session)
         self.assertRedirects(response, "/", status_code=302, target_status_code=200)
 
+    def test_POST_cannot_log_in_with_email(self):
+        self.user = User.objects.create_user(username='user', password='password', email="user@example.com")
+        response = self.client.post("/accounts/login/", {'username_or_email': 'user@example.com', 'password': 'password'})
+        self.assertIn('_auth_user_id', self.client.session)
+        self.assertRedirects(response, "/", status_code=302, target_status_code=200)
+
+    def test_POST_cannot_log_in_wrong_password(self):
+        self.user = User.objects.create_user(username='user', password='password', email="user@example.com")
+        response = self.client.post("/accounts/login/", {'username_or_email': 'user@example.com', 'password': 'wrongpassword'})
+        self.assertEqual(response.status_code, 200)
+
     def test_POST_can_redirect_after_login(self):
         self.user = User.objects.create_user(username='user', password='password')
         response = self.client.post("/accounts/login/?next=/accounts/profile/", {'username_or_email': 'user', 'password': 'password'})
