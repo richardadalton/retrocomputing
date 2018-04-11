@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.contrib import messages, auth
 from django.core.urlresolvers import reverse
-from .forms import UserLoginForm, UserRegistrationForm
+from .forms import UserLoginForm, UserRegistrationForm, BuyerRegistrationForm
 from django.contrib.auth.decorators import login_required
-
+from .models import Seller, Buyer
 
 # Create your views here.
 def logout(request):
@@ -45,13 +45,16 @@ def profile(request):
     return render(request, 'accounts/profile.html')
 
 
-def register(request):
+def register_seller(request):
     """A view that manages the registration form"""
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
         if user_form.is_valid():
-            user_form.save()
-
+            user = user_form.save()
+            seller = Seller() 
+            seller.user = user
+            seller.save()
+            
             user = auth.authenticate(username=request.POST.get('email'),
                                      password=request.POST.get('password1'))
 
@@ -70,4 +73,37 @@ def register(request):
         user_form = UserRegistrationForm()
 
     args = {'user_form': user_form}
+    return render(request, 'accounts/register.html', args)
+    
+    
+def register_buyer(request):
+    """A view that manages the registration form"""
+    if request.method == 'POST':
+        user_form = UserRegistrationForm(request.POST)
+        type_form = BuyerRegistrationForm(request.POST)
+        if user_form.is_valid() and type_form.is_valid():
+            user = user_form.save()
+            buyer = type_form.save(commit=False)
+            buyer.user = user
+            buyer.save()
+
+            user = auth.authenticate(username=request.POST.get('email'),
+                                     password=request.POST.get('password1'))
+
+            if user:
+                auth.login(request, user)
+                messages.success(request, "You have successfully registered")
+                
+                if request.GET and request.GET['next'] !='':
+                    next = request.GET['next']
+                    return HttpResponseRedirect(next)
+                else:
+                    return redirect('home')
+            else:
+                messages.error(request, "unable to log you in at this time!")
+    else:
+        user_form = UserRegistrationForm()
+        type_form = BuyerRegistrationForm()
+
+    args = {'user_form': user_form, 'type_form': type_form}
     return render(request, 'accounts/register.html', args)

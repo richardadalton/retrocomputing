@@ -1,3 +1,4 @@
 .~c9_invoke*
 db.sqlite3
 media/
+htmlcov

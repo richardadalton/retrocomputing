@@ -2,4 +2,13 @@
 {% block content %}
     <h2>Success!</h2>
     <p>You are logged in as {{ user.email }} </p>
+    
+    {% if user.Seller %}
+    <p>Holy Smokes, you're a seller</p>
+    {% endif %}
+
+    {% if user.Buyer %}
+    <p>Wow!, you're a buyer</p>
+    {% endif %}
+    
 {% endblock %}

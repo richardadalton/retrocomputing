@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
-
+from .models import Buyer
 
 class UserLoginForm(forms.Form):
     """
@@ -44,3 +44,11 @@ class UserRegistrationForm(UserCreationForm):
             raise ValidationError("Passwords do not match")
 
         return password2
+        
+        
+        
+class BuyerRegistrationForm(forms.ModelForm):
+    class Meta:
+        model=Buyer
+        fields=['city']
+        
