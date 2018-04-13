@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import resolve
 from django.contrib.auth.models import User
-from .views import login
+from accounts.views import login
 
 # Create your tests here.
 class TestAccountsViews(TestCase):

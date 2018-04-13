@@ -13,5 +13,5 @@ class Review(models.Model):
         return range(self.rating)
     
     def __str__(self):
-        return self.content
+        return "{0} ({1})".format(self.content, self.rating)
     
