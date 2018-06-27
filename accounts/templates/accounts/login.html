@@ -8,9 +8,9 @@
             <legend>Login</legend>
             
             {% if next %}
-                <p>No account? <a href="{% url 'register_buyer' %}?next={{ next }}">Sign up</a> now.</p>
+                <p>No account? <a href="{% url 'register' %}?next={{ next }}">Sign up</a> now.</p>
             {% else %}        
-                <p>No account? <a href="{% url 'register_buyer' %}">Sign up</a> now.</p>
+                <p>No account? <a href="{% url 'register' %}">Sign up</a> now.</p>
             {% endif %}
             
             <br>

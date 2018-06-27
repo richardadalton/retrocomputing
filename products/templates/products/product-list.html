@@ -12,6 +12,7 @@
                                 <h4><a href="{% url 'product_item' product.id %}">{{product.name}}</a>
                                 </h4>
                                 <p>{{product.description}}</p>
+                                <p>{{product.brand}}</p>
                             </div>
                             <div class="ratings">
                                 <p class="pull-right">{{product.reviews_received.all|length}} reviews</p>
