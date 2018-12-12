@@ -2,3 +2,6 @@
 db.sqlite3
 media/
 htmlcov
+venv
+__pycache__
+.idea
